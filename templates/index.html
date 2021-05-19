@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SSE</title>
+    <style>
+        body {background-color: powderblue;}
+        h1   {color: blue; text-align: center}
+        h3  {text-align: center}
+    </style>
+    </head>
+    <body>
+        <h1> Feeds APP </h1>
+
+        <div id="feeds">
+
+        </div>
+
+        <script>
+            const evtSource = new EventSource("http://localhost:8000/sse/stream");
+            evtSource.addEventListener("message", function(event) {
+                // Logic to handle status updates
+                document.getElementById("feeds").innerHTML +=
+              `<h3>${event.data}</h3>`;
+              console.log(event.data)
+            });  
+        </script>
+    </body>
+</html>
